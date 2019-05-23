@@ -14,9 +14,12 @@ function getResult(a, b, c) {
     //дискриминант квадратного уравнения
     let D = (b ** 2) - 4 * a * c;
     let x;
+    let arr = [];
+    let msg = 'Дискриминант меньше нуля, корней нет';
     //если D < 0, то уравнение не имеет действительных корней
     if (D < 0) {
-        console.log('Дискриминант меньше нуля, корней нет');
+        console.log(msg);
+        return msg;
     //если D = 0, то уравнение имеет один действительный корень
     } else if (D == 0) {
         x = -b / 2 * a;
@@ -24,7 +27,6 @@ function getResult(a, b, c) {
         return x;
     //если D > 0, то уравнение имеет два действительных корня
     } else if (D > 0) {
-        let arr = [];
         arr[0] = (-b + Math.sqrt(D)) / (2 * a);
         arr[1] = (-b - Math.sqrt(D)) / (2 * a);
         console.log('x1 = ' + arr[0] + ', x2 = ' + arr[1]);
@@ -40,21 +42,20 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name, dateOfBirthday) {
-    // код для задачи №2 писать здесь
     let today = new Date();
     // вычисляем разницу между текущим годом и годом рождения
     let age = today.getFullYear() - dateOfBirthday.getFullYear();
-    
+    let textMsg;
     // > 18
     if (age > 18) {
-      console.log( `Не желаете ли олд-фэшн, ${name}?`);
+        textMsg = `Не желаете ли олд-фэшн, ${name}?`;
+        console.log(textMsg);
     // < 18
     } else {
-      console.log(`Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`);
+        textMsg = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
+        console.log(textMsg);
     }
-    return;
-    //console.log(result)
-    //return result;
+    return textMsg;
 }
 
 function calculateAverageRating() {
@@ -64,19 +65,22 @@ function calculateAverageRating() {
 }
 
 function getAverageMark(marks) {
-    // код для задачи №3 писать здесь
-    let total = 0;
-    for (let i = 0; i < marks.length; i += 1) {
-        total += marks[i];
-    }
-    let result = total / marks.length;
-
+    let result;
     if (marks.length > 5) {
         //если оценок > 5, обрезаем массив
         marks.splice(5);
+        aver();
         console.log(`Оценок больше пяти. Средняя оценка, первых 5 оценок: ${result}`);
     } else {
+        aver();
         console.log(`Средняя оценка: ${result}`);
+    }
+    function aver() {
+        let sum = 0;
+        for (let i = 0; i < marks.length; i += 1) {
+            sum += marks[i];
+        }
+        result = sum / marks.length;
     }
     return result;
 }
