@@ -61,10 +61,10 @@ function getAverageScore(data) {
     return marksList;
 }
 console.log(getAverageScore({
-    algebra: [5, 5, 5, 5, 5, 5],
+     algebra: [5, 5, 5, 5, 5, 5],
     geometry: [4, 4, 4, 3, 3],
-    russian: [4, 4, 4, 4],
-    french: [5, 5, 5]
+     russian: [4, 4, 4, 4],
+      french: [5, 5, 5]
 }));
 
 // TASK 3
