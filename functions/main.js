@@ -3,12 +3,12 @@ function getSolutions(a, b, c) {
     let D = (b ** 2) - 4 * a * c;
     let x1, x2;
     if (D < 0) {
-        return {D: D};
+        return {D};
     }
     else if (D == 0) {
-        x1 = -b / 2 * a;
+        x1 = -b / (2 * a);
         return {
-            roots: x1, 
+            roots: [x1], 
             D: D
         };
     }
@@ -16,7 +16,7 @@ function getSolutions(a, b, c) {
         x1 = (-b + Math.sqrt(D)) / (2 * a);
         x2 = (-b - Math.sqrt(D)) / (2 * a);
         return {
-            roots: {x1: x1, x2: x2},
+            roots: [x1, x2],
             D: D
         };
     }
@@ -30,10 +30,10 @@ function showSolutionsMessage(a, b, c) {
         console.log(`Уравнение не имеет вещественных корней`);
     }
     else if (result.D == 0) {
-        console.log(`Уравнение имеет один корень X₁ = ${result.roots}`);
+        console.log(`Уравнение имеет один корень X₁ = ${result.roots[0]}`);
     }
     else if (result.D > 0) {
-        console.log(`Уравнение имеет один корень X₁ = ${result.roots.x1}, X₂ = ${result.roots.x2}`);
+        console.log(`Уравнение имеет один корень X₁ = ${result.roots[0]}, X₂ = ${result.roots[1]}`);
     }
 }
 
@@ -44,22 +44,27 @@ showSolutionsMessage(2, 4, 2);
 // TASK 2
 function getAverageScore(data) {
     let marksList = {};
-    let average = 0;
     let disciplinesCounter = 0;
-    for (let discipline in data) {
-        let value = data[discipline];
-        let averageValue = 0;
-        for (let i=0; i < value.length; i++) {
-            averageValue += value[i];
-        }
-        let averageMark = averageValue / value.length;
-        marksList[discipline] = averageMark;
-        disciplinesCounter++;
-        average += averageMark;
-    }
+    let average = averDis();
     marksList.average = average / disciplinesCounter;
     return marksList;
+    function averDis(){
+        let average = 0;
+        for (let discipline in data) {
+            let value = data[discipline];
+            let averageValue = 0;
+            for (let i=0; i < value.length; i++) {
+                averageValue += value[i];
+            }
+            let averageMark = averageValue / value.length;
+            marksList[discipline] = averageMark;
+            disciplinesCounter++;
+            average += averageMark;
+        }
+        return average;
+    }
 }
+
 console.log(getAverageScore({
      algebra: [5, 5, 5, 5, 5, 5],
     geometry: [4, 4, 4, 3, 3],
