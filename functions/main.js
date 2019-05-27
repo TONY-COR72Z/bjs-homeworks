@@ -44,25 +44,23 @@ showSolutionsMessage(2, 4, 2);
 // TASK 2
 function getAverageScore(data) {
     let marksList = {};
+    let averageMark = 0;
     let disciplinesCounter = 0;
-    let average = averDis();
-    marksList.average = average / disciplinesCounter;
-    return marksList;
-    function averDis(){
-        let average = 0;
-        for (let discipline in data) {
-            let value = data[discipline];
-            let averageValue = 0;
-            for (let i=0; i < value.length; i++) {
-                averageValue += value[i];
-            }
-            let averageMark = averageValue / value.length;
-            marksList[discipline] = averageMark;
-            disciplinesCounter++;
-            average += averageMark;
-        }
-        return average;
+    for (let discipline in data) {
+        let average = averDis(data[discipline]);
+        marksList[discipline] = average;
+        averageMark += average;
+        disciplinesCounter++;
     }
+    marksList.average = averageMark / disciplinesCounter;
+    return marksList;
+}
+function averDis(value){
+    let averageValue = 0;
+    for (let i = 0; i < value.length; i++) {
+        averageValue += value[i];
+    }
+    return averageValue / value.length;
 }
 
 console.log(getAverageScore({
