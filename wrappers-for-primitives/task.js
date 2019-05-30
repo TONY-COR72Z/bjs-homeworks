@@ -15,7 +15,8 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     let S = amount - contribution;
     let today = new Date();
     let term = new Date(date);
-    let n = (term.getFullYear() - today.getFullYear()) * 12;
+    let msPerDay = 24 * 60 * 60 * 1000;
+    let n = parseInt(((term - today) / msPerDay) / 30);
     console.log(n);
     let P = percent / 100 / 12;
     let payment = S * (P + P / (((1 + P) ** n) - 1));
