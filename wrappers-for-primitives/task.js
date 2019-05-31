@@ -5,25 +5,25 @@ function calculateMortgage() {
     let contribution = window.contribution.value;
     let amount = window.amount.value;
     let date = window.date.value;
-
+    
     let result = calculateTotalMortgage(percent, contribution, amount, date);
     let span = window.mortageResult;
     span.textContent = result;
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-    let S = amount - contribution;
-    let today = new Date();
-    let term = new Date(date);
-    let msPerDay = 24 * 60 * 60 * 1000;
-    let n = parseInt(((term - today) / msPerDay) / 30);
-    console.log(n);
-    let P = percent / 100 / 12;
-    let payment = S * (P + P / (((1 + P) ** n) - 1));
-    console.log(payment);
-    let totalAmount = payment * n;
-    console.log(totalAmount);
-    return totalAmount.toFixed(2);
+  let S = amount - contribution;
+  let today = new Date();
+  let term = new Date(date);
+  let msPerDay = 24 * 60 * 60 * 1000;
+  let n = parseInt(((term - today) / msPerDay) / 30);
+  console.log(n);
+  let P = percent / 100 / 12;
+  let payment = S * (P + P / (((1 + P) ** n) - 1));
+  console.log(payment);
+  let totalAmount = payment * n;
+  console.log(totalAmount);
+  return totalAmount.toFixed(2);
 }
 
 // TASK 2
