@@ -4,8 +4,8 @@ function compareArrays(arr1, arr2) {
     return arr1.length !== arr2.length ? false : arr1.every((element, i) => element === arr2[i]);
 }
 
-let results = [];
 function memorize(fn, limit) {
+    let results = [];
     return function () {
         resX = results.find(result => compareArrays(result.args, Array.from(arguments)));
         if (resX) return `Результат из памяти: ${resX.result}`;
