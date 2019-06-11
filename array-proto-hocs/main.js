@@ -8,12 +8,15 @@ function memorize(fn, limit) {
     let results = [];
     return function () {
         resX = results.find(result => compareArrays(result.args, Array.from(arguments)));
-        if (resX) return `Результат из памяти: ${resX.result}`;
-        else {
+        if (resX) {
+            console.log(`Результат из памяти: `); 
+            return resX.result;
+        } else {
             results.push({args: Array.from(arguments), result: fn(...arguments)})
             if (results.length > limit) results.shift();
-            console.log(results);
-            return `Результат не из памяти: ${results[results.length - 1].result}`;
+            //console.log(results);
+            console.log(`Результат не из памяти: `);
+            return results[results.length - 1].result;
         }
     }
 }
